@@ -31,53 +31,55 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-cyber-gradient overflow-hidden">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6">
-        <div className="container mx-auto text-center">
+      <section className="pt-32 pb-20 px-6 bg-gradient-subtle">
+        <div className="container mx-auto text-center max-w-6xl">
           <div className="slide-in-left">
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 neon-text">
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               aakam<span className="text-gradient">360</span>
             </h1>
-            <p className="text-2xl md:text-3xl text-blue-300 mb-8 floating">
-              innovate and inspire
+            <p className="text-2xl md:text-3xl text-gray-600 mb-8 font-light">
+              Innovate and Inspire
             </p>
           </div>
           
           <div className="slide-in-right">
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-12 leading-relaxed">
               Bridging the gap between industry and academia through cutting-edge collaboration, 
               innovation, and transformative experiences that shape the future.
             </p>
           </div>
 
-          {/* Floating CTA Button */}
-          <div className="floating">
-            <Button className="glass-morphism text-white border-blue-400 hover:bg-blue-500/20 px-8 py-4 text-lg rounded-full glowing transform transition-all duration-300 hover:scale-110">
-              Apply Internship
+          <div className="fade-in">
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              Apply for Internship
             </Button>
           </div>
         </div>
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {statistics.map((stat, index) => (
               <Card
                 key={index}
-                className="glass-morphism p-6 text-center card-3d cursor-pointer"
+                className="glass-card p-8 text-center card-hover cursor-pointer border-0"
                 onMouseEnter={() => setHoveredStat(index)}
                 onMouseLeave={() => setHoveredStat(null)}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="text-4xl mb-4">{stat.icon}</div>
-                <div className={`text-3xl font-bold text-white mb-2 ${hoveredStat === index ? 'neon-text' : ''}`}>
+                <div className={`text-3xl font-bold text-gray-900 mb-2 transition-colors duration-300 ${
+                  hoveredStat === index ? 'text-blue-600' : ''
+                }`}>
                   {stat.value}
                 </div>
-                <div className="text-blue-300">{stat.label}</div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
               </Card>
             ))}
           </div>
@@ -85,27 +87,30 @@ const Index = () => {
       </section>
 
       {/* 5i Pillars Preview */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-12 neon-text">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             Our 5i Framework
           </h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
+            Five interconnected pillars driving innovation and excellence
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {pillars.map((pillar, index) => (
-              <Card key={index} className="glass-morphism p-6 text-center card-3d group cursor-pointer">
-                <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
+              <Card key={index} className="glass-card p-6 text-center card-hover group cursor-pointer border-0">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                   {pillar.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {pillar.name}
                 </h3>
-                <p className="text-gray-300 text-sm">{pillar.description}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{pillar.description}</p>
               </Card>
             ))}
           </div>
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Link to="/our5i">
-              <Button variant="outline" className="glass-morphism text-blue-400 border-blue-400 hover:bg-blue-500/20">
+              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-lg">
                 Explore Our 5i →
               </Button>
             </Link>
@@ -114,18 +119,21 @@ const Index = () => {
       </section>
 
       {/* Video Section */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6 bg-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-8 neon-text">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Inspiring Leadership
           </h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            Watch our vision for the future of innovation and collaboration
+          </p>
           <div className="max-w-4xl mx-auto">
-            <Card className="glass-morphism p-8 card-3d">
-              <div className="aspect-video bg-gray-800 rounded-lg flex items-center justify-center glowing">
+            <Card className="glass-card p-8 card-hover border-0">
+              <div className="aspect-video bg-gradient-blue rounded-lg flex items-center justify-center shadow-lg">
                 <div className="text-center">
                   <div className="text-6xl mb-4">🎥</div>
-                  <p className="text-white text-xl">Udaya Sankar's Inspiring Speech</p>
-                  <p className="text-gray-300 mt-2">Vision for the Future</p>
+                  <p className="text-white text-xl font-semibold">Udaya Sankar's Inspiring Speech</p>
+                  <p className="text-blue-200 mt-2">Vision for the Future</p>
                 </div>
               </div>
             </Card>
@@ -133,17 +141,20 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Alliance Carousel */}
-      <section className="py-16 px-6">
+      {/* Alliance Partners */}
+      <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-12 neon-text">
+          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
             Our Alliance Partners
           </h2>
+          <p className="text-xl text-gray-600 text-center mb-12">
+            Collaborating with industry leaders to drive innovation
+          </p>
           <div className="flex justify-center items-center space-x-8 overflow-hidden">
             {alliances.map((alliance, index) => (
-              <Card key={index} className="glass-morphism p-6 text-center rotating card-3d">
-                <div className="text-4xl mb-2">{alliance.logo}</div>
-                <p className="text-white font-semibold">{alliance.name}</p>
+              <Card key={index} className="glass-card p-6 text-center card-hover border-0" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div className="text-4xl mb-3">{alliance.logo}</div>
+                <p className="text-gray-900 font-semibold">{alliance.name}</p>
               </Card>
             ))}
           </div>
@@ -151,18 +162,18 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/10">
+      <footer className="py-16 px-6 bg-gradient-blue">
         <div className="container mx-auto text-center">
-          <div className="glass-morphism p-6 rounded-lg floating">
-            <p className="text-gray-300">
+          <div className="glass-card p-8 rounded-lg">
+            <p className="text-gray-700 text-lg mb-4">
               © 2024 Aakam360. Innovating the future through collaboration.
             </p>
-            <div className="flex justify-center space-x-6 mt-4">
-              <Link to="/contact" className="text-blue-400 hover:text-blue-300 transition-colors">
+            <div className="flex justify-center space-x-6 text-gray-600">
+              <Link to="/contact" className="hover:text-blue-600 transition-colors">
                 Contact Us
               </Link>
-              <span className="text-gray-500">|</span>
-              <span className="text-gray-300">Pullipalayam, Sankari, Salem</span>
+              <span>|</span>
+              <span>Pullipalayam, Sankari, Salem</span>
             </div>
           </div>
         </div>
