@@ -11,15 +11,13 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+    <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <img 
-              src="/lovable-uploads/079f9a40-6150-48c3-a07e-384d5bed5764.png" 
-              alt="Aakam360 Logo" 
-              className="h-10 w-auto"
-            />
+            <Link to="/" className="text-2xl font-bold heading-display text-foreground">
+              aakam<span className="accent-cyan">360</span>
+            </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -29,11 +27,14 @@ const Navigation = () => {
                 to={item.path}
                 className={`relative px-4 py-2 rounded-lg transition-all duration-300 font-medium ${
                   location.pathname === item.path
-                    ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                    ? "text-accent bg-accent/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
               >
                 {item.label}
+                {location.pathname === item.path && (
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-accent rounded-full"></div>
+                )}
               </Link>
             ))}
           </div>
