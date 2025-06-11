@@ -15,8 +15,15 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link to="/" className="text-2xl font-bold heading-display text-foreground">
-              aakam<span className="accent-cyan">360</span>
+            <Link to="/" className="flex items-center space-x-3">
+              <img 
+                src="/lovable-uploads/4e05b345-ae74-4eb4-b538-84069c5f2573.png" 
+                alt="Aakam360 Logo" 
+                className="h-10 w-auto"
+              />
+              <span className="text-2xl font-bold heading-display text-foreground">
+                aakam<span className="accent-electric">360</span>
+              </span>
             </Link>
           </div>
           

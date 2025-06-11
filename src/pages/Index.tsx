@@ -103,12 +103,21 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
-      {/* Hero Section with Liquid Effects */}
+      {/* Hero Section with Building Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-navy">
-        <ParticleBackground className="opacity-30" particleCount={80} />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/50 to-navy z-10"></div>
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/lovable-uploads/079f9a40-6150-48c3-a07e-384d5bed5764.png" 
+            alt="Aakam360 Building" 
+            className="w-full h-full object-cover opacity-20"
+          />
+          <div className="absolute inset-0 bg-navy/70"></div>
+        </div>
         
-        <div className="container mx-auto px-6 text-center relative z-20">
+        <ParticleBackground className="opacity-30 z-10" particleCount={80} />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/50 to-navy z-20"></div>
+        
+        <div className="container mx-auto px-6 text-center relative z-30">
           <div className="slide-in-left max-w-4xl mx-auto">
             <h1 className="text-6xl md:text-8xl font-bold heading-display mb-6 leading-tight text-white">
               Aakam<span className="accent-gold">360</span>
@@ -275,4 +284,3 @@ const Index = () => {
 };
 
 export default Index;
-
