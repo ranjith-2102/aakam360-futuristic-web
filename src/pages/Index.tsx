@@ -130,7 +130,7 @@ const Index = () => {
       {/* Hero Section with Building Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-navy">
         <div className="absolute inset-0 z-0">
-          <img src="/lovable-uploads/079f9a40-6150-48c3-a07e-384d5bed5764.png" alt="Aakam360 Building" className="w-full h-full object-cover opacity-20" />
+          <img src="/lovable-uploads/3fbef525-52f8-4216-bc7c-b4b1418c3c8f.png" alt="Aakam360 Building" className="w-full h-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-navy/70"></div>
         </div>
         
