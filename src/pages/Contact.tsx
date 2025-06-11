@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { MapPin, Clock, Phone, Mail, Linkedin, Twitter, Instagram, Youtube } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,25 +23,25 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: "📍",
+      icon: MapPin,
       title: "Location",
       details: "Pullipalayam, Sankari, Salem\nTamil Nadu, India - 637304",
       accent: "accent-cyan"
     },
     {
-      icon: "🕒",
+      icon: Clock,
       title: "Operating Hours",
       details: "9 AM to 6 PM\nMonday to Saturday",
       accent: "accent-orange"
     },
     {
-      icon: "📞",
+      icon: Phone,
       title: "Phone",
       details: "+91 98765 43210\n+91 98765 43211",
       accent: "accent-cyan"
     },
     {
-      icon: "✉️",
+      icon: Mail,
       title: "Email",
       details: "info@aakam360.com\nsupport@aakam360.com",
       accent: "accent-orange"
@@ -48,10 +49,10 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: "📘", name: "LinkedIn", handle: "@aakam360" },
-    { icon: "🐦", name: "Twitter", handle: "@aakam360" },
-    { icon: "📸", name: "Instagram", handle: "@aakam360" },
-    { icon: "📺", name: "YouTube", handle: "Aakam360" },
+    { icon: Linkedin, name: "LinkedIn", handle: "@aakam360" },
+    { icon: Twitter, name: "Twitter", handle: "@aakam360" },
+    { icon: Instagram, name: "Instagram", handle: "@aakam360" },
+    { icon: Youtube, name: "YouTube", handle: "Aakam360" },
   ];
 
   return (
@@ -153,20 +154,23 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {contactInfo.map((info, index) => (
-                  <Card 
-                    key={index} 
-                    className="studio-card p-6 text-center"
-                  >
-                    <div className="text-4xl mb-4">{info.icon}</div>
-                    <h3 className={`text-xl font-bold heading-xl mb-3 ${info.accent}`}>
-                      {info.title}
-                    </h3>
-                    <p className="text-muted-foreground body-large whitespace-pre-line leading-relaxed">
-                      {info.details}
-                    </p>
-                  </Card>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const IconComponent = info.icon;
+                  return (
+                    <Card 
+                      key={index} 
+                      className="studio-card p-6 text-center"
+                    >
+                      <IconComponent className="w-8 h-8 mx-auto mb-4 text-accent" />
+                      <h3 className={`text-xl font-bold heading-xl mb-3 ${info.accent}`}>
+                        {info.title}
+                      </h3>
+                      <p className="text-muted-foreground body-large whitespace-pre-line leading-relaxed">
+                        {info.details}
+                      </p>
+                    </Card>
+                  );
+                })}
               </div>
 
               {/* Social Links */}
@@ -175,18 +179,19 @@ const Contact = () => {
                   Connect With Us
                 </h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {socialLinks.map((social, index) => (
-                    <div 
-                      key={index}
-                      className="bg-muted/30 p-4 rounded-lg text-center hover:bg-accent/20 hover:text-accent transition-all duration-300 cursor-pointer group"
-                    >
-                      <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
-                        {social.icon}
+                  {socialLinks.map((social, index) => {
+                    const IconComponent = social.icon;
+                    return (
+                      <div 
+                        key={index}
+                        className="bg-muted/30 p-4 rounded-lg text-center hover:bg-accent/20 hover:text-accent transition-all duration-300 cursor-pointer group"
+                      >
+                        <IconComponent className="w-6 h-6 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                        <div className="text-sm font-medium">{social.name}</div>
+                        <div className="text-xs text-muted-foreground">{social.handle}</div>
                       </div>
-                      <div className="text-sm font-medium">{social.name}</div>
-                      <div className="text-xs text-muted-foreground">{social.handle}</div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </Card>
             </div>
@@ -203,7 +208,9 @@ const Contact = () => {
             </h2>
             <div className="aspect-video bg-gradient-to-br from-muted/50 to-background rounded-lg flex items-center justify-center shadow-lg">
               <div className="text-center">
-                <div className="text-6xl mb-4">🗺️</div>
+                <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-full flex items-center justify-center">
+                  <MapPin className="w-8 h-8 text-accent" />
+                </div>
                 <p className="text-foreground text-xl font-semibold heading-xl">Interactive Campus Map</p>
                 <p className="text-muted-foreground mt-2 body-large">
                   Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304
