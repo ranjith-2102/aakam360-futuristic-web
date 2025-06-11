@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
+import ParticleBackground from "@/components/ParticleBackground";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,25 +27,25 @@ const Contact = () => {
       icon: MapPin,
       title: "Location",
       details: "Pullipalayam, Sankari, Salem\nTamil Nadu, India - 637304",
-      accent: "accent-cyan"
+      accent: "accent-gold"
     },
     {
       icon: Clock,
       title: "Operating Hours",
       details: "9 AM to 6 PM\nMonday to Saturday",
-      accent: "accent-orange"
+      accent: "accent-electric"
     },
     {
       icon: Phone,
       title: "Phone",
       details: "+91 98765 43210\n+91 98765 43211",
-      accent: "accent-cyan"
+      accent: "accent-gold"
     },
     {
       icon: Mail,
       title: "Email",
       details: "info@aakam360.com\nsupport@aakam360.com",
-      accent: "accent-orange"
+      accent: "accent-electric"
     }
   ];
 
@@ -60,12 +61,13 @@ const Contact = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6 section-dark">
-        <div className="container mx-auto text-center">
-          <h1 className="text-6xl md:text-8xl font-bold heading-display mb-8 slide-in-left">
-            Get In <span className="accent-cyan">Touch</span>
+      <section className="pt-32 pb-20 px-6 section-navy relative overflow-hidden">
+        <ParticleBackground className="opacity-20" particleCount={40} />
+        <div className="container mx-auto text-center relative z-10">
+          <h1 className="text-6xl md:text-8xl font-bold heading-display mb-8 slide-in-left text-white">
+            Get In <span className="accent-gold">Touch</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 slide-in-right body-large leading-relaxed">
+          <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12 slide-in-right body-large leading-relaxed">
             Ready to be part of the innovation ecosystem? Connect with us and let's build the future together.
           </p>
         </div>
@@ -78,7 +80,7 @@ const Contact = () => {
             
             {/* Contact Form */}
             <div>
-              <Card className="studio-card p-8">
+              <Card className="liquid-card p-8">
                 <h2 className="text-3xl font-bold heading-xl mb-8">
                   Send us a Message
                 </h2>
@@ -93,8 +95,8 @@ const Contact = () => {
                         onChange={(e) => handleInputChange("name", e.target.value)}
                         onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
-                        className={`h-14 text-lg bg-background border-border focus:border-accent transition-all duration-300 ${
-                          focusedField === "name" ? "ring-2 ring-accent/20" : ""
+                        className={`h-16 text-lg bg-background/50 border-2 border-border focus:border-accent transition-all duration-300 rounded-xl ${
+                          focusedField === "name" ? "ring-2 ring-accent/20 shadow-lg" : ""
                         }`}
                       />
                     </div>
@@ -107,8 +109,8 @@ const Contact = () => {
                         onChange={(e) => handleInputChange("email", e.target.value)}
                         onFocus={() => setFocusedField("email")}
                         onBlur={() => setFocusedField(null)}
-                        className={`h-14 text-lg bg-background border-border focus:border-accent transition-all duration-300 ${
-                          focusedField === "email" ? "ring-2 ring-accent/20" : ""
+                        className={`h-16 text-lg bg-background/50 border-2 border-border focus:border-accent transition-all duration-300 rounded-xl ${
+                          focusedField === "email" ? "ring-2 ring-accent/20 shadow-lg" : ""
                         }`}
                       />
                     </div>
@@ -122,8 +124,8 @@ const Contact = () => {
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       onFocus={() => setFocusedField("phone")}
                       onBlur={() => setFocusedField(null)}
-                      className={`h-14 text-lg bg-background border-border focus:border-accent transition-all duration-300 ${
-                        focusedField === "phone" ? "ring-2 ring-accent/20" : ""
+                      className={`h-16 text-lg bg-background/50 border-2 border-border focus:border-accent transition-all duration-300 rounded-xl ${
+                        focusedField === "phone" ? "ring-2 ring-accent/20 shadow-lg" : ""
                       }`}
                     />
                   </div>
@@ -136,14 +138,14 @@ const Contact = () => {
                       onFocus={() => setFocusedField("message")}
                       onBlur={() => setFocusedField(null)}
                       rows={6}
-                      className={`text-lg bg-background border-border focus:border-accent transition-all duration-300 resize-none ${
-                        focusedField === "message" ? "ring-2 ring-accent/20" : ""
+                      className={`text-lg bg-background/50 border-2 border-border focus:border-accent transition-all duration-300 resize-none rounded-xl ${
+                        focusedField === "message" ? "ring-2 ring-accent/20 shadow-lg" : ""
                       }`}
                     />
                   </div>
                   
                   <div className="pt-4">
-                    <Button className="cta-primary w-full md:w-auto">
+                    <Button className="cta-gold w-full md:w-auto text-lg px-12 py-4">
                       Send Message
                     </Button>
                   </div>
@@ -159,9 +161,9 @@ const Contact = () => {
                   return (
                     <Card 
                       key={index} 
-                      className="studio-card p-6 text-center"
+                      className="liquid-card p-6 text-center expand-card"
                     >
-                      <IconComponent className="w-8 h-8 mx-auto mb-4 text-accent" />
+                      <IconComponent className="w-8 h-8 mx-auto mb-4 text-accent icon-morph" />
                       <h3 className={`text-xl font-bold heading-xl mb-3 ${info.accent}`}>
                         {info.title}
                       </h3>
@@ -174,7 +176,7 @@ const Contact = () => {
               </div>
 
               {/* Social Links */}
-              <Card className="studio-card p-8">
+              <Card className="liquid-card p-8">
                 <h3 className="text-2xl font-bold heading-xl mb-6 text-center">
                   Connect With Us
                 </h3>
@@ -184,9 +186,9 @@ const Contact = () => {
                     return (
                       <div 
                         key={index}
-                        className="bg-muted/30 p-4 rounded-lg text-center hover:bg-accent/20 hover:text-accent transition-all duration-300 cursor-pointer group"
+                        className="bg-muted/30 p-4 rounded-xl text-center hover:bg-accent/20 hover:text-accent transition-all duration-300 cursor-pointer group expand-card"
                       >
-                        <IconComponent className="w-6 h-6 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                        <IconComponent className="w-6 h-6 mx-auto mb-2 group-hover:scale-110 transition-transform icon-morph" />
                         <div className="text-sm font-medium">{social.name}</div>
                         <div className="text-xs text-muted-foreground">{social.handle}</div>
                       </div>
@@ -199,20 +201,20 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-20 px-6 section-dark">
+      {/* Map Section with CSS-only pin animation */}
+      <section className="py-20 px-6 section-navy">
         <div className="container mx-auto">
-          <Card className="studio-card p-12 text-center">
-            <h2 className="text-3xl font-bold heading-xl mb-12">
+          <Card className="liquid-card p-12 text-center bg-white/5 border-white/10">
+            <h2 className="text-3xl font-bold heading-xl mb-12 text-white">
               Visit Our Campus
             </h2>
-            <div className="aspect-video bg-gradient-to-br from-muted/50 to-background rounded-lg flex items-center justify-center shadow-lg">
+            <div className="aspect-video bg-gradient-to-br from-accent/20 to-navy/40 rounded-xl flex items-center justify-center shadow-lg">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-accent/20 rounded-full flex items-center justify-center">
-                  <MapPin className="w-8 h-8 text-accent" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center float-animation">
+                  <MapPin className="w-8 h-8 text-gold" />
                 </div>
-                <p className="text-foreground text-xl font-semibold heading-xl">Interactive Campus Map</p>
-                <p className="text-muted-foreground mt-2 body-large">
+                <p className="text-white text-xl font-semibold heading-xl">Interactive Campus Map</p>
+                <p className="text-white/80 mt-2 body-large">
                   Pullipalayam, Sankari, Salem, Tamil Nadu, India - 637304
                 </p>
               </div>
@@ -225,3 +227,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

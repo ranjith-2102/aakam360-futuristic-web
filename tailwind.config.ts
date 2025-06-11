@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,10 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				gold: 'hsl(var(--gold))',
+				navy: 'hsl(var(--navy))',
+				'electric-blue': 'hsl(var(--electric-blue))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,13 +88,40 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'typewriter': {
+					from: { width: '0' },
+					to: { width: '100%' }
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'particle-float': {
+					'0%, 100%': { transform: 'translate(0, 0) scale(1)', opacity: '0.7' },
+					'25%': { transform: 'translate(10px, -15px) scale(1.1)', opacity: '1' },
+					'50%': { transform: 'translate(-5px, -25px) scale(0.9)', opacity: '0.8' },
+					'75%': { transform: 'translate(-15px, -10px) scale(1.05)', opacity: '0.9' }
+				},
+				'glide-left': {
+					from: { transform: 'translateX(100%)' },
+					to: { transform: 'translateX(-100%)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'typewriter': 'typewriter 3s steps(40, end)',
+				'float': 'float 3s ease-in-out infinite',
+				'particle-float': 'particle-float 8s ease-in-out infinite',
+				'glide-left': 'glide-left 20s linear infinite'
+			},
+			fontFamily: {
+				'poppins': ['Poppins', 'sans-serif'],
+				'inter': ['Inter', 'sans-serif'],
 			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
