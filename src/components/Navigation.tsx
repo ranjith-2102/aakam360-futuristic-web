@@ -26,9 +26,9 @@ const Navigation = () => {
           <div className="flex items-center space-x-4">
             <Link to="/" className="flex items-center space-x-3">
               <img 
-                src="/lovable-uploads/4e05b345-ae74-4eb4-b538-84069c5f2573.png" 
+                src="/lovable-uploads/a7a46f46-b6a7-4c05-9388-d99ba5823d85.png" 
                 alt="Aakam360 Logo" 
-                className="h-10 w-auto" 
+                className="h-12 w-auto object-contain" 
               />
             </Link>
           </div>
