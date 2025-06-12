@@ -53,24 +53,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				},
-				gold: 'hsl(var(--gold))',
+				// Custom colors for the modern design
 				navy: 'hsl(var(--navy))',
-				'electric-blue': 'hsl(var(--electric-blue))'
+				charcoal: 'hsl(var(--charcoal))',
+				stone: 'hsl(var(--stone))',
+				cream: 'hsl(var(--cream))',
+				'accent-blue': 'hsl(var(--accent-blue))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				'inter': ['Inter', 'sans-serif'],
+				'space-grotesk': ['Space Grotesk', 'sans-serif'],
 			},
 			keyframes: {
 				'accordion-down': {
@@ -89,39 +86,50 @@ export default {
 						height: '0'
 					}
 				},
-				'typewriter': {
-					from: { width: '0' },
-					to: { width: '100%' }
+				'fade-in-up': {
+					from: { 
+						transform: 'translateY(32px)', 
+						opacity: '0' 
+					},
+					to: { 
+						transform: 'translateY(0)', 
+						opacity: '1' 
+					}
 				},
-				'float': {
-					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-5px)' }
+				'fade-in-left': {
+					from: { 
+						transform: 'translateX(-32px)', 
+						opacity: '0' 
+					},
+					to: { 
+						transform: 'translateX(0)', 
+						opacity: '1' 
+					}
 				},
-				'particle-float': {
-					'0%, 100%': { transform: 'translate(0, 0) scale(1)', opacity: '0.7' },
-					'25%': { transform: 'translate(10px, -15px) scale(1.1)', opacity: '1' },
-					'50%': { transform: 'translate(-5px, -25px) scale(0.9)', opacity: '0.8' },
-					'75%': { transform: 'translate(-15px, -10px) scale(1.05)', opacity: '0.9' }
+				'scale-in': {
+					from: { 
+						transform: 'scale(0.95)', 
+						opacity: '0' 
+					},
+					to: { 
+						transform: 'scale(1)', 
+						opacity: '1' 
+					}
 				},
-				'glide-left': {
-					from: { transform: 'translateX(100%)' },
-					to: { transform: 'translateX(-100%)' }
+				'gentle-float': {
+					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+					'50%': { transform: 'translateY(-8px) rotate(2deg)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'typewriter': 'typewriter 3s steps(40, end)',
-				'float': 'float 3s ease-in-out infinite',
-				'particle-float': 'particle-float 8s ease-in-out infinite',
-				'glide-left': 'glide-left 20s linear infinite'
-			},
-			fontFamily: {
-				'poppins': ['Poppins', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
+				'fade-in-up': 'fade-in-up 0.8s cubic-bezier(0.21, 0, 0.36, 1) forwards',
+				'fade-in-left': 'fade-in-left 0.8s cubic-bezier(0.21, 0, 0.36, 1) forwards',
+				'scale-in': 'scale-in 0.6s cubic-bezier(0.21, 0, 0.36, 1) forwards',
+				'gentle-float': 'gentle-float 6s ease-in-out infinite'
 			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
 } satisfies Config;
-
