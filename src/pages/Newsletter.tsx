@@ -41,28 +41,47 @@ const Newsletter = () => {
       const element = document.getElementById('newsletter-content');
       if (!element) return;
 
+      // Higher quality settings for better PDF output
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
-        allowTaint: true
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        logging: false,
+        height: element.scrollHeight,
+        width: element.scrollWidth
       });
       
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/png', 1.0);
+      
+      // A4 dimensions in mm
       const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 295;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
+      const pdfWidth = 210;
+      const pdfHeight = 297;
+      
+      // Calculate scaling to fit width
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const ratio = canvasHeight / canvasWidth;
+      
+      // Scale to fit PDF width with margins
+      const imgWidth = pdfWidth - 20; // 10mm margin on each side
+      const imgHeight = imgWidth * ratio;
+      
       let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
+      const pageHeight = pdfHeight - 20; // Account for margins
+      
+      // Add first page
+      pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+      
+      let remainingHeight = imgHeight - pageHeight;
+      
+      // Add additional pages if needed
+      while (remainingHeight > 0) {
+        position = remainingHeight - imgHeight;
         pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        pdf.addImage(imgData, 'PNG', 10, position + 10, imgWidth, imgHeight);
+        remainingHeight -= pageHeight;
       }
 
       pdf.save(`Echo-360-Newsletter-Issue-${selectedIssue}.pdf`);
