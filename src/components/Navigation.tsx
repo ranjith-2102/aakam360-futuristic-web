@@ -14,6 +14,10 @@ const Navigation = () => {
       label: "Our 5i"
     },
     {
+      path: "/newsletter",
+      label: "Newsletter"
+    },
+    {
       path: "/contact",
       label: "Contact"
     }
