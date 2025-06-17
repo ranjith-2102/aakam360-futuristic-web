@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
@@ -22,7 +21,10 @@ import {
   MapPin,
   Clock,
   GamepadIcon,
-  Puzzle
+  Puzzle,
+  Star,
+  Coffee,
+  Smile
 } from "lucide-react";
 
 const Newsletter = () => {
@@ -194,138 +196,190 @@ const Newsletter = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       <Navigation />
       
-      {/* Header Section */}
-      <section className="pt-24 pb-16 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center bg-green-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-6">
-              ISSUE NO: {selectedIssue}<sup>rd</sup>
+      {/* Warm Welcome Header */}
+      <section className="pt-28 pb-20 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-100/30 via-purple-100/20 to-indigo-100/30"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-16">
+            {/* Friendly greeting */}
+            <div className="inline-flex items-center bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
+              <Coffee className="w-4 h-4 mr-2" />
+              Welcome to Issue #{selectedIssue} ✨
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-green-700 mb-6 heading-display">
+            
+            <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-8 heading-display">
               ECHO 360
             </h1>
-            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4 heading-xl">
-              BUSINESS NEWSLETTER
-            </h2>
-            <p className="text-xl text-green-600 body-large">
-              Innovate and Inspire - Your Monthly Business Update
+            
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <Star className="w-6 h-6 text-pink-500" />
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-700 heading-xl">
+                Your Monthly Dose of Inspiration
+              </h2>
+              <Star className="w-6 h-6 text-purple-500" />
+            </div>
+            
+            <p className="text-xl text-gray-600 body-large max-w-2xl mx-auto leading-relaxed">
+              Crafted with love to bring you closer to our community, achievements, and shared dreams ✨
             </p>
           </div>
 
-          {/* Featured Quote */}
-          <Card className="bg-gradient-to-r from-green-600 to-green-700 text-white p-8 mb-12 max-w-4xl mx-auto">
+          {/* Warm Welcome Message */}
+          <Card className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 text-white p-10 mb-16 max-w-5xl mx-auto shadow-2xl rounded-3xl">
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-6 heading-lg">ECHO 360</h3>
-              <p className="text-lg mb-4 body-large">May, 2025</p>
-              <div className="text-4xl font-bold mb-6 text-green-100">25 / 25 / 25</div>
-              <div className="space-y-4 text-lg leading-relaxed">
-                <p>Every milestone marks progress, not the finish line.</p>
-                <p>Every challenge brings a new opportunity to grow.</p>
-                <p>Together, we're not just building a company — we're shaping a legacy.</p>
+              <div className="flex items-center justify-center mb-6">
+                <Heart className="w-8 h-8 mr-3 text-pink-200" />
+                <h3 className="text-3xl font-bold heading-lg">A Message From Our Hearts</h3>
+                <Heart className="w-8 h-8 ml-3 text-pink-200" />
               </div>
+              
+              <p className="text-lg mb-6 body-large leading-relaxed">May 2025 Edition</p>
+              
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
+                <div className="text-5xl font-bold mb-6 text-pink-100">25 / 25 / 25</div>
+                <div className="space-y-4 text-lg leading-relaxed">
+                  <div className="flex items-center justify-center gap-3">
+                    <Smile className="w-5 h-5 text-pink-200" />
+                    <p>Every milestone marks progress, not the finish line.</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <Smile className="w-5 h-5 text-purple-200" />
+                    <p>Every challenge brings a new opportunity to grow.</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-3">
+                    <Smile className="w-5 h-5 text-indigo-200" />
+                    <p>Together, we're not just building a company — we're shaping a legacy.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <Button className="bg-white text-purple-600 hover:bg-pink-50 px-8 py-3 rounded-full font-medium shadow-lg transform hover:scale-105 transition-all duration-300">
+                Let's Begin This Journey Together 💕
+              </Button>
             </div>
           </Card>
         </div>
       </section>
 
       {/* Newsletter Content */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="space-y-12">
+          <div className="space-y-16">
             {sections.map((section, index) => {
               const IconComponent = section.icon;
+              const isEven = index % 2 === 0;
               
               return (
                 <Card 
                   key={section.id} 
-                  className="overflow-hidden hover:shadow-xl transition-all duration-300"
+                  className={`overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 rounded-3xl ${
+                    isEven ? 'bg-gradient-to-r from-pink-50 to-purple-50' : 'bg-gradient-to-r from-purple-50 to-indigo-50'
+                  }`}
                   id={section.id}
                 >
-                  <div className="bg-green-600 text-white p-6">
+                  <div className={`${
+                    isEven 
+                      ? 'bg-gradient-to-r from-pink-500 to-purple-600' 
+                      : 'bg-gradient-to-r from-purple-500 to-indigo-600'
+                  } text-white p-8`}>
                     <div className="flex items-center space-x-4">
-                      <IconComponent className="w-8 h-8" />
-                      <h3 className="text-2xl font-bold heading-lg">{section.title}</h3>
-                      <Quote className="w-8 h-8 ml-auto" />
+                      <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
+                        <IconComponent className="w-8 h-8" />
+                      </div>
+                      <h3 className="text-2xl font-bold heading-lg flex-1">{section.title}</h3>
+                      <Quote className="w-8 h-8 opacity-60" />
                     </div>
                     {section.subtitle && (
-                      <p className="text-green-100 mt-2 text-lg">{section.subtitle}</p>
+                      <p className="text-white/90 mt-4 text-lg font-medium">{section.subtitle}</p>
                     )}
                   </div>
                   
-                  <div className="p-8 bg-white">
+                  <div className="p-10 bg-white/70 backdrop-blur-sm">
                     <div className="prose prose-lg max-w-none">
-                      <p className="text-gray-700 leading-relaxed mb-6">{section.content}</p>
+                      <p className="text-gray-700 leading-relaxed mb-8 text-lg">{section.content}</p>
                       
                       {/* CEO/COO Author Info */}
                       {section.author && (
-                        <div className="flex items-center justify-end mt-6 p-4 bg-green-50 rounded-lg">
-                          <div className="text-right mr-4">
-                            <p className="font-bold text-green-800">{section.author}</p>
-                            <p className="text-green-600 text-sm">{section.position}</p>
+                        <div className="flex items-center justify-end mt-8 p-6 bg-gradient-to-r from-pink-100 to-purple-100 rounded-2xl">
+                          <div className="text-right mr-6">
+                            <p className="font-bold text-purple-800 text-lg">{section.author}</p>
+                            <p className="text-purple-600">{section.position}</p>
                           </div>
-                          <div className="w-16 h-16 bg-green-200 rounded-full flex items-center justify-center">
-                            <User className="w-8 h-8 text-green-600" />
+                          <div className="w-20 h-20 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
+                            <User className="w-10 h-10 text-white" />
                           </div>
                         </div>
                       )}
 
                       {/* COO Goals */}
                       {section.goals && (
-                        <div className="mt-6">
-                          <ul className="space-y-2">
-                            {section.goals.map((goal, i) => (
-                              <li key={i} className="flex items-center text-green-700 font-medium">
-                                <Target className="w-5 h-5 mr-3 text-green-600" />
-                                {goal}
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="mt-8 grid gap-4">
+                          {section.goals.map((goal, i) => (
+                            <div key={i} className="flex items-center p-4 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl">
+                              <div className="bg-gradient-to-r from-purple-500 to-indigo-500 p-2 rounded-full mr-4">
+                                <Target className="w-5 h-5 text-white" />
+                              </div>
+                              <span className="text-purple-800 font-medium text-lg">{goal}</span>
+                            </div>
+                          ))}
                         </div>
                       )}
 
                       {/* Digital Marketing Highlights */}
                       {section.highlights && (
-                        <div className="mt-6 space-y-4">
+                        <div className="mt-8 grid gap-6">
                           {section.highlights.map((highlight, i) => (
-                            <div key={i} className="bg-green-50 p-4 rounded-lg">
-                              <h4 className="font-bold text-green-800 mb-2">{highlight.platform}</h4>
-                              <ul className="space-y-1">
+                            <div key={i} className="bg-gradient-to-r from-pink-100 to-purple-100 p-6 rounded-2xl">
+                              <h4 className="font-bold text-purple-800 mb-4 text-xl flex items-center">
+                                <Star className="w-5 h-5 mr-2 text-pink-500" />
+                                {highlight.platform}
+                              </h4>
+                              <div className="grid gap-2">
                                 {highlight.metrics.map((metric, j) => (
-                                  <li key={j} className="text-green-700">• {metric}</li>
+                                  <div key={j} className="flex items-center text-purple-700">
+                                    <div className="w-2 h-2 bg-pink-400 rounded-full mr-3"></div>
+                                    {metric}
+                                  </div>
                                 ))}
-                              </ul>
+                              </div>
                             </div>
                           ))}
                           {section.additional && (
-                            <p className="text-green-700 font-medium mt-4">✨ {section.additional}</p>
+                            <div className="bg-gradient-to-r from-indigo-100 to-purple-100 p-6 rounded-2xl">
+                              <p className="text-purple-700 font-medium text-lg flex items-center">
+                                <Heart className="w-5 h-5 mr-3 text-pink-500" />
+                                {section.additional}
+                              </p>
+                            </div>
                           )}
                         </div>
                       )}
 
                       {/* IT Tasks */}
                       {section.tasks && (
-                        <div className="mt-6">
-                          <ul className="space-y-3">
-                            {section.tasks.map((task, i) => (
-                              <li key={i} className="flex items-start">
-                                <div className="w-2 h-2 bg-green-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                                <span className="text-gray-700">{task}</span>
-                              </li>
-                            ))}
-                          </ul>
+                        <div className="mt-8 space-y-4">
+                          {section.tasks.map((task, i) => (
+                            <div key={i} className="flex items-start p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl">
+                              <div className="w-3 h-3 bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                              <span className="text-gray-700 leading-relaxed">{task}</span>
+                            </div>
+                          ))}
                         </div>
                       )}
 
                       {/* Incubation Events */}
                       {section.events && (
-                        <div className="mt-6 space-y-6">
+                        <div className="mt-8 space-y-8">
                           {section.events.map((event, i) => (
-                            <div key={i} className="bg-green-50 p-6 rounded-lg">
-                              <h4 className="font-bold text-green-800 mb-3 text-lg">{event.title}</h4>
-                              <p className="text-gray-700 leading-relaxed">{event.description}</p>
+                            <div key={i} className="bg-gradient-to-r from-pink-50 via-purple-50 to-indigo-50 p-8 rounded-3xl border border-purple-100">
+                              <h4 className="font-bold text-purple-800 mb-4 text-xl flex items-center">
+                                <Rocket className="w-6 h-6 mr-3 text-pink-500" />
+                                {event.title}
+                              </h4>
+                              <p className="text-gray-700 leading-relaxed text-lg">{event.description}</p>
                             </div>
                           ))}
                         </div>
@@ -333,11 +387,16 @@ const Newsletter = () => {
 
                       {/* Learning Points */}
                       {section.learningPoints && (
-                        <div className="mt-6 space-y-6">
+                        <div className="mt-8 space-y-6">
                           {section.learningPoints.map((point, i) => (
-                            <div key={i} className="bg-green-50 p-4 rounded-lg">
-                              <h4 className="font-bold text-green-800 mb-2">{point.title}</h4>
-                              <p className="text-gray-700">{point.description}</p>
+                            <div key={i} className="bg-gradient-to-r from-pink-50 to-purple-50 p-6 rounded-2xl border border-pink-100">
+                              <h4 className="font-bold text-purple-800 mb-3 text-lg flex items-center">
+                                <div className="w-8 h-8 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full flex items-center justify-center mr-3">
+                                  <span className="text-white font-bold text-sm">{i + 1}</span>
+                                </div>
+                                {point.title}
+                              </h4>
+                              <p className="text-gray-700 leading-relaxed ml-11">{point.description}</p>
                             </div>
                           ))}
                         </div>
@@ -345,32 +404,38 @@ const Newsletter = () => {
 
                       {/* Sudoku Puzzle */}
                       {section.puzzle && (
-                        <div className="mt-6">
-                          <h4 className="text-2xl font-bold text-center text-green-800 mb-6">{section.puzzle.title}</h4>
-                          <div className="bg-green-100 p-6 rounded-lg max-w-md mx-auto">
-                            <div className="grid grid-cols-9 gap-1 bg-green-800 p-2 rounded">
+                        <div className="mt-8">
+                          <h4 className="text-3xl font-bold text-center text-purple-800 mb-8 flex items-center justify-center">
+                            <Puzzle className="w-8 h-8 mr-3 text-pink-500" />
+                            {section.puzzle.title}
+                          </h4>
+                          <div className="bg-gradient-to-r from-pink-100 to-purple-100 p-8 rounded-3xl max-w-md mx-auto">
+                            <div className="grid grid-cols-9 gap-1 bg-gradient-to-r from-purple-600 to-indigo-600 p-3 rounded-2xl shadow-lg">
                               {section.puzzle.grid.map((row, i) => 
                                 row.map((cell, j) => (
                                   <div 
                                     key={`${i}-${j}`} 
-                                    className="w-8 h-8 bg-white flex items-center justify-center text-sm font-bold text-green-800 border border-green-300"
+                                    className="w-8 h-8 bg-white flex items-center justify-center text-sm font-bold text-purple-800 border border-purple-200 rounded"
                                   >
                                     {cell}
                                   </div>
                                 ))
                               )}
                             </div>
-                            <p className="text-sm text-green-700 mt-4 text-center">
-                              📧 {section.puzzle.note}
-                            </p>
+                            <div className="text-center mt-6 p-4 bg-white/70 rounded-2xl">
+                              <p className="text-sm text-purple-700 flex items-center justify-center">
+                                <Mail className="w-4 h-4 mr-2 text-pink-500" />
+                                {section.puzzle.note}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       )}
 
                       {/* Signature */}
                       {section.signature && (
-                        <div className="mt-6 text-right">
-                          <p className="text-green-700 italic">{section.signature}</p>
+                        <div className="mt-8 text-right">
+                          <p className="text-purple-700 italic text-lg font-medium">{section.signature}</p>
                         </div>
                       )}
                     </div>
@@ -383,82 +448,95 @@ const Newsletter = () => {
       </section>
 
       {/* Editorial Board & Contact Section */}
-      <section className="py-16 px-6 bg-green-600 text-white">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="bg-green-700 text-white p-8">
-            <h3 className="text-3xl font-bold mb-8 heading-lg flex items-center">
-              <Users className="w-8 h-8 mr-4" />
-              EDITORIAL BOARD
+      <section className="py-20 px-6 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 to-pink-600/90"></div>
+        <div className="container mx-auto max-w-5xl relative z-10">
+          <Card className="bg-white/10 backdrop-blur-lg text-white p-10 rounded-3xl border border-white/20 shadow-2xl">
+            <h3 className="text-4xl font-bold mb-12 heading-lg flex items-center justify-center">
+              <Users className="w-10 h-10 mr-4 text-pink-200" />
+              OUR LOVELY TEAM
+              <Heart className="w-10 h-10 ml-4 text-pink-200" />
             </h3>
             
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div>
-                <h4 className="font-bold text-green-200 mb-2">PATRONS</h4>
-                <p>Mr. A. Thirumoorthy & Mr. S. P. Arun Prasad</p>
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <h4 className="font-bold text-pink-200 mb-3 text-lg">PATRONS</h4>
+                <p className="leading-relaxed">Mr. A. Thirumoorthy & Mr. S. P. Arun Prasad</p>
               </div>
-              <div>
-                <h4 className="font-bold text-green-200 mb-2">EDITORS</h4>
-                <p>Mr. M. Manojkumar & Ms. M. Aruna</p>
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <h4 className="font-bold text-purple-200 mb-3 text-lg">EDITORS</h4>
+                <p className="leading-relaxed">Mr. M. Manojkumar & Ms. M. Aruna</p>
               </div>
-              <div>
-                <h4 className="font-bold text-green-200 mb-2">DESIGNERS</h4>
-                <p>Mr. JM. Chandru & Mr. M. Satheskumar</p>
+              <div className="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+                <h4 className="font-bold text-indigo-200 mb-3 text-lg">DESIGNERS</h4>
+                <p className="leading-relaxed">Mr. JM. Chandru & Mr. M. Satheskumar</p>
               </div>
             </div>
 
-            <h3 className="text-2xl font-bold mb-6 heading-lg">CONTACT US</h3>
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold mb-6 heading-lg flex items-center justify-center">
+                <Coffee className="w-8 h-8 mr-3 text-pink-200" />
+                LET'S STAY CONNECTED
+              </h3>
+            </div>
             
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <p className="text-green-100 text-lg italic mb-4">Connecting to the Right People</p>
-                <p className="text-green-100 mb-6">
+            <div className="grid md:grid-cols-2 gap-10">
+              <div className="space-y-6">
+                <p className="text-pink-100 text-lg italic mb-6 leading-relaxed">
+                  We'd love to hear from you! ✨
+                </p>
+                <p className="text-white/90 mb-8 leading-relaxed">
                   At Aakam 360, we believe in the power of collaboration and innovation. Whether 
-                  you're a student, educator, entrepreneur, or industry leader, we're here to support your journey.
+                  you're a student, educator, entrepreneur, or industry leader, we're here to support your journey with warmth and care.
                 </p>
                 
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <MapPin className="w-5 h-5 mr-3 text-green-300" />
+                <div className="space-y-5">
+                  <div className="flex items-start p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
+                    <MapPin className="w-6 h-6 mr-4 text-pink-300 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-bold text-green-200">Address</p>
-                      <p>Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India – 637304</p>
+                      <p className="font-bold text-pink-200 mb-1">Our Home</p>
+                      <p className="leading-relaxed">Block B, Pullipalayam, Sankari, Salem, Tamil Nadu, India – 637304</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center">
-                    <Phone className="w-5 h-5 mr-3 text-green-300" />
+                  <div className="flex items-start p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
+                    <Phone className="w-6 h-6 mr-4 text-purple-300 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-bold text-green-200">Phone</p>
-                      <p>+91 843 843 5777<br/>+91 843 843 5999</p>
+                      <p className="font-bold text-purple-200 mb-1">Call Us</p>
+                      <p className="leading-relaxed">+91 843 843 5777<br/>+91 843 843 5999</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center">
-                    <Mail className="w-5 h-5 mr-3 text-green-300" />
+                  <div className="flex items-start p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
+                    <Mail className="w-6 h-6 mr-4 text-indigo-300 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-bold text-green-200">Email</p>
-                      <p>info@aakam360.com</p>
+                      <p className="font-bold text-indigo-200 mb-1">Write to Us</p>
+                      <p className="leading-relaxed">info@aakam360.com</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-center">
-                    <Clock className="w-5 h-5 mr-3 text-green-300" />
+                  <div className="flex items-start p-4 bg-white/10 rounded-2xl backdrop-blur-sm">
+                    <Clock className="w-6 h-6 mr-4 text-pink-300 flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-bold text-green-200">Office Hours</p>
-                      <p>Monday – Saturday: 9:00 AM – 6:00 PM</p>
+                      <p className="font-bold text-pink-200 mb-1">We're Available</p>
+                      <p className="leading-relaxed">Monday – Saturday: 9:00 AM – 6:00 PM</p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-green-600 p-6 rounded-lg">
-                <h4 className="font-bold text-xl mb-4">Let's Collaborate</h4>
-                <p className="text-green-100 mb-6">
+              <div className="bg-gradient-to-r from-pink-500/20 to-purple-500/20 p-8 rounded-3xl backdrop-blur-sm border border-white/20">
+                <div className="text-center mb-6">
+                  <Heart className="w-12 h-12 mx-auto mb-4 text-pink-300" />
+                  <h4 className="font-bold text-2xl mb-4">Let's Create Magic Together</h4>
+                </div>
+                <p className="text-white/90 mb-8 text-center leading-relaxed">
                   Reach out to us to explore opportunities in incubation, internships, research 
-                  collaborations, or to learn more about our initiatives.
+                  collaborations, or simply to share your wonderful ideas with our community.
                 </p>
-                <Button className="bg-white text-green-600 hover:bg-green-50 w-full">
-                  Get In Touch
+                <Button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-600 hover:to-purple-700 w-full py-4 rounded-2xl font-medium shadow-lg transform hover:scale-105 transition-all duration-300">
+                  <Mail className="w-5 h-5 mr-2" />
+                  Start a Conversation 💕
                 </Button>
               </div>
             </div>
@@ -466,25 +544,32 @@ const Newsletter = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 px-6 bg-green-800 text-white">
+      {/* Warm Footer */}
+      <footer className="py-12 px-6 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
         <div className="container mx-auto text-center">
-          <div className="flex justify-center items-center space-x-6 mb-4">
-            <div className="flex items-center space-x-2">
+          <div className="flex flex-wrap justify-center items-center gap-8 mb-6">
+            <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
               <span>🌐</span>
-              <span>www.aakam360.com</span>
+              <span className="font-medium">www.aakam360.com</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
               <Phone className="w-4 h-4" />
-              <span>+91 843 843 5777</span>
+              <span className="font-medium">+91 843 843 5777</span>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-full">
               <MapPin className="w-4 h-4" />
-              <span>Block B, SSEI, Sankari</span>
+              <span className="font-medium">Block B, SSEI, Sankari</span>
             </div>
           </div>
-          <p className="text-green-200">
-            © 2024 Aakam360. All rights reserved. | Echo 360 Newsletter
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Heart className="w-5 h-5 text-pink-400" />
+            <p className="text-gray-300">
+              Made with love © 2024 Aakam360. All rights reserved. | Echo 360 Newsletter
+            </p>
+            <Heart className="w-5 h-5 text-pink-400" />
+          </div>
+          <p className="text-gray-400 text-sm">
+            Thank you for being part of our wonderful community! ✨
           </p>
         </div>
       </footer>
