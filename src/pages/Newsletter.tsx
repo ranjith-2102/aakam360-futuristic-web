@@ -15,7 +15,6 @@ import {
   Heart, 
   GraduationCap, 
   Award,
-  Calendar,
   Mail,
   Phone,
   MapPin,
@@ -41,47 +40,87 @@ const Newsletter = () => {
       const element = document.getElementById('newsletter-content');
       if (!element) return;
 
-      // Higher quality settings for better PDF output
-      const canvas = await html2canvas(element, {
-        scale: 1.5,
+      // Create a temporary clone of the element with optimized styles for PDF
+      const clonedElement = element.cloneNode(true) as HTMLElement;
+      clonedElement.style.width = '794px'; // A4 width in pixels at 96dpi
+      clonedElement.style.maxWidth = '794px';
+      clonedElement.style.padding = '40px';
+      clonedElement.style.backgroundColor = '#ffffff';
+      clonedElement.style.position = 'absolute';
+      clonedElement.style.left = '-9999px';
+      clonedElement.style.top = '0';
+      document.body.appendChild(clonedElement);
+
+      // Enhanced canvas settings for better quality
+      const canvas = await html2canvas(clonedElement, {
+        scale: 2,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
         logging: false,
-        height: element.scrollHeight,
-        width: element.scrollWidth
+        width: 794,
+        height: clonedElement.scrollHeight,
+        windowWidth: 794,
+        windowHeight: clonedElement.scrollHeight
       });
+
+      // Remove the temporary element
+      document.body.removeChild(clonedElement);
       
-      const imgData = canvas.toDataURL('image/png', 1.0);
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
       
       // A4 dimensions in mm
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = 210;
       const pdfHeight = 297;
+      const margin = 10;
       
-      // Calculate scaling to fit width
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const ratio = canvasHeight / canvasWidth;
+      // Calculate dimensions
+      const availableWidth = pdfWidth - (margin * 2);
+      const availableHeight = pdfHeight - (margin * 2);
       
-      // Scale to fit PDF width with margins
-      const imgWidth = pdfWidth - 20; // 10mm margin on each side
-      const imgHeight = imgWidth * ratio;
+      const canvasAspectRatio = canvas.height / canvas.width;
+      const imgWidth = availableWidth;
+      const imgHeight = imgWidth * canvasAspectRatio;
       
-      let position = 0;
-      const pageHeight = pdfHeight - 20; // Account for margins
-      
-      // Add first page
-      pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-      
-      let remainingHeight = imgHeight - pageHeight;
-      
-      // Add additional pages if needed
-      while (remainingHeight > 0) {
-        position = remainingHeight - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 10, position + 10, imgWidth, imgHeight);
-        remainingHeight -= pageHeight;
+      // If content fits on one page
+      if (imgHeight <= availableHeight) {
+        pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
+      } else {
+        // Multi-page handling
+        const pageHeight = availableHeight;
+        const totalPages = Math.ceil(imgHeight / pageHeight);
+        
+        for (let page = 0; page < totalPages; page++) {
+          if (page > 0) {
+            pdf.addPage();
+          }
+          
+          const sourceY = (page * pageHeight * canvas.height) / imgHeight;
+          const sourceHeight = Math.min(
+            (pageHeight * canvas.height) / imgHeight,
+            canvas.height - sourceY
+          );
+          
+          // Create a canvas for this page
+          const pageCanvas = document.createElement('canvas');
+          pageCanvas.width = canvas.width;
+          pageCanvas.height = sourceHeight;
+          
+          const pageContext = pageCanvas.getContext('2d');
+          if (pageContext) {
+            pageContext.drawImage(
+              canvas,
+              0, sourceY, canvas.width, sourceHeight,
+              0, 0, canvas.width, sourceHeight
+            );
+            
+            const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.95);
+            const pageImgHeight = (sourceHeight * imgWidth) / canvas.width;
+            
+            pdf.addImage(pageImgData, 'JPEG', margin, margin, imgWidth, pageImgHeight);
+          }
+        }
       }
 
       pdf.save(`Echo-360-Newsletter-Issue-${selectedIssue}.pdf`);
