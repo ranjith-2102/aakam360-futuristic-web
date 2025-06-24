@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Text, Box, Plane, Float, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -164,38 +164,57 @@ const ContentPanels = ({ scrollProgress }: { scrollProgress: number }) => {
   );
 };
 
+// Fallback component for when WebGL is not supported
+const WebGLFallback = () => (
+  <div className="webgl-fallback">
+    <div>
+      <h1 className="text-4xl font-bold mb-4">Aakam360</h1>
+      <p className="text-xl">Innovation Redefined</p>
+      <p className="text-sm mt-4">Your browser doesn't support WebGL or there was an error loading the 3D scene.</p>
+    </div>
+  </div>
+);
+
 // Main Scene Component
 export const ThreeScene = ({ scrollProgress }: { scrollProgress: number }) => {
   return (
-    <Canvas
-      camera={{ position: [0, 5, 15], fov: 75 }}
-      style={{ background: 'linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%)' }}
-    >
-      <Environment preset="city" />
-      
-      {/* Lighting */}
-      <ambientLight intensity={0.4} />
-      <directionalLight 
-        position={[10, 10, 5]} 
-        intensity={1} 
-        castShadow 
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <pointLight position={[0, 10, 0]} intensity={0.5} />
-      
-      {/* 3D Elements */}
-      <Building />
-      <FloatingLogo />
-      <ContentPanels scrollProgress={scrollProgress} />
-      
-      {/* Camera Controller */}
-      <CameraController scrollProgress={scrollProgress} />
-      
-      {/* Ground */}
-      <Plane args={[50, 50]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
-        <meshStandardMaterial color="#90EE90" />
-      </Plane>
-    </Canvas>
+    <div className="relative w-full h-full">
+      <Canvas
+        camera={{ position: [0, 5, 15], fov: 75 }}
+        style={{ background: 'linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%)' }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#87CEEB');
+        }}
+        fallback={<WebGLFallback />}
+      >
+        <Suspense fallback={null}>
+          <Environment preset="city" />
+          
+          {/* Lighting */}
+          <ambientLight intensity={0.4} />
+          <directionalLight 
+            position={[10, 10, 5]} 
+            intensity={1} 
+            castShadow 
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
+          />
+          <pointLight position={[0, 10, 0]} intensity={0.5} />
+          
+          {/* 3D Elements */}
+          <Building />
+          <FloatingLogo />
+          <ContentPanels scrollProgress={scrollProgress} />
+          
+          {/* Camera Controller */}
+          <CameraController scrollProgress={scrollProgress} />
+          
+          {/* Ground */}
+          <Plane args={[50, 50]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
+            <meshStandardMaterial color="#90EE90" />
+          </Plane>
+        </Suspense>
+      </Canvas>
+    </div>
   );
 };
