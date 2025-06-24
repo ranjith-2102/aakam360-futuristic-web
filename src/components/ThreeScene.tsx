@@ -70,11 +70,11 @@ const CameraController = ({ scrollProgress }: { scrollProgress: number }) => {
 
 // Fallback component
 const WebGLFallback = () => (
-  <div className="webgl-fallback">
-    <div>
-      <h1 className="text-4xl font-bold mb-4 text-white">Aakam360</h1>
-      <p className="text-xl text-white">Innovation Redefined</p>
-      <p className="text-sm mt-4 text-white/80">Your browser doesn't support WebGL or there was an error loading the 3D scene.</p>
+  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-400 to-blue-600">
+    <div className="text-white text-center">
+      <h1 className="text-4xl font-bold mb-4">Aakam360</h1>
+      <p className="text-xl">Innovation Redefined</p>
+      <p className="text-sm mt-4 opacity-80">Your browser doesn't support WebGL or there was an error loading the 3D scene.</p>
     </div>
   </div>
 );
@@ -101,7 +101,7 @@ export const ThreeScene = ({ scrollProgress }: { scrollProgress: number }) => {
             gl.setClearColor('#87CEEB');
             gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
           } catch (error) {
-            console.log('WebGL setup error:', error);
+            console.error('WebGL setup error:', error);
           }
         }}
         fallback={<WebGLFallback />}
