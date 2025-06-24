@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, Text, Box, Plane, Float, Environment } from '@react-three/drei';
 import * as THREE from 'three';
@@ -68,7 +68,6 @@ const FloatingLogo = () => {
       <Text
         fontSize={1.5}
         color="#4a90e2"
-        font="/fonts/inter-bold.woff"
         anchorX="center"
         anchorY="middle"
       >
