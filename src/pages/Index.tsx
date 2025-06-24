@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -10,6 +9,7 @@ import { Building2, Zap, Users, Microscope, Factory, GraduationCap, Rocket, Ligh
 
 const Index = () => {
   const scrollProgress = useScrollProgress();
+  const [isThreeLoaded, setIsThreeLoaded] = useState(false);
   
   const [counters, setCounters] = useState({
     workspace: 0,
@@ -18,6 +18,14 @@ const Index = () => {
     scholars: 0
   });
   const [isVisible, setIsVisible] = useState(false);
+
+  // Check if Three.js should load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsThreeLoaded(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const statistics = [
     {
@@ -130,7 +138,16 @@ const Index = () => {
       {/* 3D Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <ThreeScene scrollProgress={scrollProgress} />
+          {isThreeLoaded ? (
+            <ThreeScene scrollProgress={scrollProgress} />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+              <div className="text-white text-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+                <p>Loading Experience...</p>
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Overlay Content */}

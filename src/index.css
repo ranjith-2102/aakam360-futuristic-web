@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -253,43 +254,44 @@ html {
   perspective: 1000px;
 }
 
-/* Responsive Design Helpers */
-@media (max-width: 768px) {
-  .fade-in-up,
-  .fade-in-left,
-  .gentle-float {
-    animation: none;
-  }
-  
-  .modern-card:hover,
-  .btn-primary:hover,
-  .btn-secondary:hover {
-    transform: none;
-  }
+/* WebGL support fallback */
+.webgl-fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  z-index: 1;
 }
 
-/* 3D Scene Optimizations */
-.three-scene {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Enhanced smooth scrolling for 3D transitions */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Parallax optimizations */
-.parallax-content {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-}
-
-/* 3D scene container */
+/* Canvas styling */
 canvas {
   display: block !important;
   outline: none;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .three-scene {
+    transform: scale(0.9);
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  .fade-in-up,
+  .fade-in-left,
+  .gentle-float {
+    animation-duration: 0.3s;
+  }
+  
+  /* Simplify cards on mobile */
+  .modern-card:hover {
+    transform: none;
+  }
 }
 
 /* Scroll indicator animation */
@@ -307,45 +309,4 @@ canvas {
 
 .scroll-indicator {
   animation: scroll-bounce 2s infinite;
-}
-
-/* Performance optimizations for mobile */
-@media (max-width: 768px) {
-  .three-scene {
-    transform: scale(0.8);
-  }
-  
-  /* Reduce animations on mobile for better performance */
-  .fade-in-up,
-  .fade-in-left,
-  .gentle-float {
-    animation-duration: 0.3s;
-  }
-}
-
-/* WebGL support fallback */
-.webgl-fallback {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #87CEEB 0%, #E0F6FF 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  z-index: 1;
-}
-
-/* Performance optimizations for mobile */
-@media (max-width: 768px) {
-  .three-scene {
-    transform: scale(0.8);
-  }
-  
-  /* Reduce animations on mobile for better performance */
-  .fade-in-up,
-  .fade-in-left,
-  .gentle-float {
-    animation-duration: 0.3s;
-  }
 }
