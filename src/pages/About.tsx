@@ -195,7 +195,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Journey Section - New Orbit Concept */}
+      {/* Journey Section - Responsive Design */}
       <section className="py-20 px-6 section-gradient relative overflow-hidden">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16 fade-in-up">
@@ -204,23 +204,23 @@ const About = () => {
             </Badge>
             <h2 className="heading-xl text-4xl mb-4">Journey Through Time</h2>
             <p className="body-large text-muted-foreground max-w-2xl mx-auto">
-              Experience our transformation through an interactive orbital timeline that showcases key milestones in our ecosystem development.
+              Experience our transformation through an interactive timeline showcasing key milestones in our ecosystem development.
             </p>
           </div>
           
-          {/* Orbital Journey */}
-          <div className="relative">
+          {/* Desktop Orbital Journey */}
+          <div className="hidden lg:block relative">
             {/* Central Hub */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary rounded-full flex items-center justify-center z-20 shadow-2xl">
-              <Building2 className="h-12 w-12 text-white" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-primary rounded-full flex items-center justify-center z-20 shadow-2xl">
+              <Building2 className="h-8 w-8 text-white" />
             </div>
             
             {/* Orbital Rings */}
-            <div className="relative w-full h-96 md:h-[600px] flex items-center justify-center">
+            <div className="relative w-full h-[500px] flex items-center justify-center">
               {journeyPhases.map((phase, index) => {
                 const IconComponent = phase.icon;
                 const angle = (index * 72) - 90; // 360/5 = 72 degrees between each
-                const radius = 200;
+                const radius = 180;
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
                 
@@ -246,25 +246,25 @@ const About = () => {
                     />
                     
                     {/* Phase Node */}
-                    <div className={`w-20 h-20 ${phase.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="h-8 w-8 text-white" />
+                    <div className={`w-16 h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="h-6 w-6 text-white" />
                     </div>
                     
                     {/* Phase Info Card */}
-                    <Card className="absolute top-24 left-1/2 transform -translate-x-1/2 w-80 modern-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
-                      <CardHeader>
+                    <Card className="absolute top-20 left-1/2 transform -translate-x-1/2 w-72 modern-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none group-hover:pointer-events-auto">
+                      <CardHeader className="pb-3">
                         <div className="flex items-center gap-2 mb-2">
-                          <Badge variant="outline" className="text-primary border-primary">
+                          <Badge variant="outline" className="text-primary border-primary text-xs">
                             {phase.year}
                           </Badge>
-                          <Badge className="bg-primary/10 text-primary">
+                          <Badge className="bg-primary/10 text-primary text-xs">
                             {phase.phase}
                           </Badge>
                         </div>
-                        <CardTitle className="heading-lg text-lg">{phase.title}</CardTitle>
+                        <CardTitle className="heading-lg text-base">{phase.title}</CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <p className="body-small text-muted-foreground">{phase.description}</p>
+                      <CardContent className="pt-0">
+                        <p className="body-small text-muted-foreground text-sm">{phase.description}</p>
                       </CardContent>
                     </Card>
                   </div>
@@ -272,13 +272,53 @@ const About = () => {
               })}
             </div>
           </div>
+
+          {/* Mobile & Tablet Vertical Timeline */}
+          <div className="block lg:hidden">
+            <div className="relative max-w-2xl mx-auto">
+              {/* Timeline Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+              
+              <div className="space-y-8">
+                {journeyPhases.map((phase, index) => {
+                  const IconComponent = phase.icon;
+                  return (
+                    <div key={phase.year} className="relative flex items-start fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                      {/* Timeline Node */}
+                      <div className={`relative z-10 w-16 h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0`}>
+                        <IconComponent className="h-6 w-6 text-white" />
+                      </div>
+                      
+                      {/* Content */}
+                      <Card className="ml-6 modern-card flex-1 hover-scale">
+                        <CardHeader>
+                          <div className="flex items-center gap-2 mb-2">
+                            <Badge variant="outline" className="text-primary border-primary">
+                              {phase.year}
+                            </Badge>
+                            <Badge className="bg-primary/10 text-primary">
+                              {phase.phase}
+                            </Badge>
+                          </div>
+                          <CardTitle className="heading-lg text-lg">{phase.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <p className="body-large text-muted-foreground">{phase.description}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
           
           {/* Journey Stats */}
           <div className="mt-16 text-center fade-in-up">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
               {journeyPhases.map((phase, index) => (
                 <div key={phase.year} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="text-3xl font-bold text-primary mb-2">{phase.year}</div>
+                  <div className="text-2xl md:text-3xl font-bold text-primary mb-2">{phase.year}</div>
                   <div className="body-small text-muted-foreground">{phase.phase}</div>
                 </div>
               ))}
