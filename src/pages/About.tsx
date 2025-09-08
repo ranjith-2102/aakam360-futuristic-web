@@ -1,57 +1,80 @@
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Building2, Users, Trophy, Target, Lightbulb, Rocket, Globe, Zap } from "lucide-react";
 
 const About = () => {
+  const stats = [
+    { value: "8+", label: "Years of Excellence", icon: Trophy },
+    { value: "2000+", label: "Students Empowered", icon: Users },
+    { value: "100+", label: "Startups Launched", icon: Rocket },
+    { value: "50+", label: "Awards & Recognitions", icon: Target }
+  ];
+
   const leadership = [
     {
       name: "Thirumoorthy Aarumugam",
-      role: "Founder & CEO"
+      role: "Founder & CEO",
+      description: "Visionary leader driving the 5i ecosystem transformation"
     },
     {
       name: "Priya Sharma", 
-      role: "Chief Operating Officer"
+      role: "Chief Operating Officer",
+      description: "Operational excellence and strategic partnerships"
     },
     {
       name: "Rohan Kumar",
-      role: "Chief Technology Officer"
+      role: "Chief Technology Officer",
+      description: "Technology innovation and digital transformation"
     },
     {
       name: "Anjali Gupta",
-      role: "Head of Incubation"
+      role: "Head of Incubation",
+      description: "Startup mentoring and incubation programs"
     }
   ];
 
-  const timeline = [
+  const journeyPhases = [
     {
+      phase: "Foundation",
       year: "2015",
-      title: "Foundation & Vision",
-      description: "Aakam360 was born from a revolutionary vision to bridge the gap between academia and industry.",
-      milestone: "First Campus Established"
+      icon: Building2,
+      title: "Building the Vision",
+      description: "Started with a revolutionary idea to bridge academia and industry gaps",
+      color: "bg-blue-500"
     },
     {
-      year: "2017", 
-      title: "5i Model Innovation",
-      description: "Launched our revolutionary 5i ecosystem model integrating Industry, Institution, Incubation, Innovation, and Internship.",
-      milestone: "5i Framework Launched"
+      phase: "Innovation", 
+      year: "2017",
+      icon: Lightbulb,
+      title: "5i Framework Birth",
+      description: "Pioneered the groundbreaking 5i ecosystem model",
+      color: "bg-purple-500"
     },
     {
-      year: "2019",
-      title: "Global Expansion", 
-      description: "Extended our reach across multiple states and established strategic industry partnerships.",
-      milestone: "Multi-State Presence"
+      phase: "Expansion",
+      year: "2019", 
+      icon: Globe,
+      title: "Scaling Impact",
+      description: "Extended reach across states with strategic partnerships",
+      color: "bg-green-500"
     },
     {
+      phase: "Transformation",
       year: "2021",
-      title: "Digital Transformation",
-      description: "Embraced digital-first approach with AI-powered matching and virtual collaboration tools.",
-      milestone: "Platform Digitization"
+      icon: Zap,
+      title: "Digital Evolution",
+      description: "Embraced AI-powered solutions and virtual collaboration",
+      color: "bg-orange-500"
     },
     {
+      phase: "Excellence",
       year: "2024",
-      title: "Ecosystem Maturity",
-      description: "Achieved full ecosystem integration with over 10,000+ students and 500+ industry partners.",
-      milestone: "Ecosystem Scale"
+      icon: Rocket,
+      title: "Ecosystem Mastery",
+      description: "Achieved full integration with 10,000+ students and 500+ partners",
+      color: "bg-red-500"
     }
   ];
 
@@ -60,28 +83,66 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6">
-        <div className="container mx-auto max-w-4xl text-center">
-          <div className="fade-in-up">
-            <h1 className="heading-display text-5xl md:text-7xl mb-6">
-              About <span className="text-primary">Aakam360</span>
-            </h1>
-            <p className="body-large text-xl text-muted-foreground max-w-3xl mx-auto">
-              We are architects of a self-sustaining ecosystem, bridging the critical gaps between industry, innovation, and academia.
-            </p>
+      <section className="pt-24 pb-16 px-6 section-gradient">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="fade-in-up">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary">
+                About Aakam360
+              </Badge>
+              <h1 className="heading-display text-5xl md:text-6xl mb-6">
+                Architects of <span className="text-primary">Innovation</span>
+              </h1>
+              <p className="body-large text-xl text-muted-foreground mb-8">
+                We are architects of a self-sustaining ecosystem, bridging the critical gaps between industry, innovation, and academia through our revolutionary 5i model.
+              </p>
+              <Button className="btn-primary">
+                Explore Our Impact <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+            
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-6 fade-in-up" style={{ animationDelay: "0.2s" }}>
+              {stats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <Card key={stat.label} className="modern-card text-center hover-scale">
+                    <CardContent className="pt-6">
+                      <IconComponent className="h-8 w-8 mx-auto mb-3 text-primary" />
+                      <div className="heading-xl text-3xl font-bold text-primary mb-2">
+                        {stat.value}
+                      </div>
+                      <p className="body-small text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-16 px-6 section-gradient">
+      <section className="py-16 px-6">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="text-center mb-12 fade-in-up">
+            <h2 className="heading-xl text-4xl mb-4">Our Foundation</h2>
+            <p className="body-large text-muted-foreground">
+              The principles that drive our ecosystem forward
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
             <Card className="modern-card fade-in-left">
-              <CardHeader>
-                <CardTitle className="heading-lg text-2xl text-primary">Our Vision</CardTitle>
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Target className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="heading-lg text-2xl">Our Vision</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <p className="body-large text-muted-foreground">
                   To create a globally recognized, self-reliant ecosystem that seamlessly integrates education with entrepreneurship, fostering a generation of innovators and leaders who can solve real-world challenges.
                 </p>
@@ -89,10 +150,13 @@ const About = () => {
             </Card>
 
             <Card className="modern-card fade-in-left" style={{ animationDelay: "0.2s" }}>
-              <CardHeader>
-                <CardTitle className="heading-lg text-2xl text-primary">Our Mission</CardTitle>
+              <CardHeader className="text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Rocket className="h-8 w-8 text-primary" />
+                </div>
+                <CardTitle className="heading-lg text-2xl">Our Mission</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="text-center">
                 <p className="body-large text-muted-foreground">
                   Through our 5i model (Industry, Institution, Incubation, Innovation, Internship), we empower students, support startups, and partner with institutions to build a dynamic and sustainable talent pipeline for the future.
                 </p>
@@ -103,25 +167,121 @@ const About = () => {
       </section>
 
       {/* Leadership Quote */}
-      <section className="py-16 px-6 section-dark">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section className="py-20 px-6 section-dark relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="fade-in-up">
-            <h2 className="heading-xl text-3xl mb-8 text-white">Neural Leadership Network</h2>
-            <p className="body-large mb-6 text-white/80">
-              The quantum minds steering Aakam360 towards a post-digital future.
-            </p>
-            
-            <blockquote className="text-2xl italic text-white/90 mb-8 leading-relaxed">
+            <Badge className="mb-6 bg-white/10 text-white border-white/20">
+              From the Neural Core
+            </Badge>
+            <blockquote className="text-3xl md:text-4xl italic text-white/90 mb-8 leading-relaxed">
               "We didn't just build a company; we engineered an ecosystem where potential meets opportunity."
             </blockquote>
             
-            <p className="body-large text-white/80 max-w-3xl mx-auto mb-6">
-              At Aakam360, we believe that true innovation happens at the intersection of learning and doing. Our 5i model is more than a framework—it's a promise to every student, startup, and partner that we will provide the tools, environment, and network to not just succeed, but to thrive and redefine the future.
+            <p className="body-large text-white/80 max-w-3xl mx-auto mb-8">
+              At Aakam360, we believe that true innovation happens at the intersection of learning and doing. Our 5i model is more than a framework—it's a promise to every student, startup, and partner.
             </p>
             
-            <div className="text-right max-w-3xl mx-auto">
-              <p className="font-semibold text-white">Thirumoorthy Aarumugam</p>
-              <p className="text-white/70">Founder & CEO, Aakam360</p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <div className="text-left">
+                <p className="font-semibold text-white">Thirumoorthy Aarumugam</p>
+                <p className="text-white/70">Founder & CEO, Aakam360</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Journey Section - New Orbit Concept */}
+      <section className="py-20 px-6 section-gradient relative overflow-hidden">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-16 fade-in-up">
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary">
+              Our Evolution
+            </Badge>
+            <h2 className="heading-xl text-4xl mb-4">Journey Through Time</h2>
+            <p className="body-large text-muted-foreground max-w-2xl mx-auto">
+              Experience our transformation through an interactive orbital timeline that showcases key milestones in our ecosystem development.
+            </p>
+          </div>
+          
+          {/* Orbital Journey */}
+          <div className="relative">
+            {/* Central Hub */}
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary rounded-full flex items-center justify-center z-20 shadow-2xl">
+              <Building2 className="h-12 w-12 text-white" />
+            </div>
+            
+            {/* Orbital Rings */}
+            <div className="relative w-full h-96 md:h-[600px] flex items-center justify-center">
+              {journeyPhases.map((phase, index) => {
+                const IconComponent = phase.icon;
+                const angle = (index * 72) - 90; // 360/5 = 72 degrees between each
+                const radius = 200;
+                const x = Math.cos((angle * Math.PI) / 180) * radius;
+                const y = Math.sin((angle * Math.PI) / 180) * radius;
+                
+                return (
+                  <div
+                    key={phase.year}
+                    className="absolute transform -translate-x-1/2 -translate-y-1/2 fade-in-up hover-scale group cursor-pointer"
+                    style={{ 
+                      left: `calc(50% + ${x}px)`, 
+                      top: `calc(50% + ${y}px)`,
+                      animationDelay: `${index * 0.2}s`
+                    }}
+                  >
+                    {/* Orbit Line */}
+                    <div 
+                      className="absolute w-px bg-border/30 origin-bottom"
+                      style={{
+                        height: `${radius}px`,
+                        transform: `rotate(${angle + 90}deg)`,
+                        left: '50%',
+                        bottom: '50%'
+                      }}
+                    />
+                    
+                    {/* Phase Node */}
+                    <div className={`w-20 h-20 ${phase.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className="h-8 w-8 text-white" />
+                    </div>
+                    
+                    {/* Phase Info Card */}
+                    <Card className="absolute top-24 left-1/2 transform -translate-x-1/2 w-80 modern-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30">
+                      <CardHeader>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge variant="outline" className="text-primary border-primary">
+                            {phase.year}
+                          </Badge>
+                          <Badge className="bg-primary/10 text-primary">
+                            {phase.phase}
+                          </Badge>
+                        </div>
+                        <CardTitle className="heading-lg text-lg">{phase.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="body-small text-muted-foreground">{phase.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          {/* Journey Stats */}
+          <div className="mt-16 text-center fade-in-up">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+              {journeyPhases.map((phase, index) => (
+                <div key={phase.year} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <div className="text-3xl font-bold text-primary mb-2">{phase.year}</div>
+                  <div className="body-small text-muted-foreground">{phase.phase}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -131,25 +291,35 @@ const About = () => {
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 fade-in-up">
-            <h2 className="heading-xl text-4xl mb-4">Leadership Team</h2>
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary">
+              Neural Leadership Network
+            </Badge>
+            <h2 className="heading-xl text-4xl mb-4">Meet Our Visionaries</h2>
             <p className="body-large text-muted-foreground">
-              Meet the visionaries driving our ecosystem forward
+              The quantum minds steering Aakam360 towards a post-digital future
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {leadership.map((leader, index) => (
-              <Card key={leader.name} className="modern-card text-center fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="pt-6">
-                  <div className="w-24 h-24 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-semibold text-primary">
-                      {leader.name.split(' ').map(n => n[0]).join('')}
-                    </span>
+              <Card key={leader.name} className="modern-card fade-in-up hover-scale" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-6">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-lg font-semibold text-primary">
+                        {leader.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="heading-lg text-xl mb-2">{leader.name}</h3>
+                      <Badge variant="secondary" className="mb-3">
+                        {leader.role}
+                      </Badge>
+                      <p className="body-large text-muted-foreground">
+                        {leader.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="heading-lg text-lg mb-2">{leader.name}</h3>
-                  <Badge variant="secondary" className="text-sm">
-                    {leader.role}
-                  </Badge>
                 </CardContent>
               </Card>
             ))}
@@ -157,74 +327,22 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-16 px-6 section-gradient">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 fade-in-up">
-            <h2 className="heading-xl text-4xl mb-4">Quantum Journey</h2>
-            <p className="body-large text-muted-foreground">
-              Navigating through spacetime—discover the key moments that shaped our reality.
-            </p>
-          </div>
-          
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-border"></div>
-            
-            <div className="space-y-12">
-              {timeline.map((item, index) => (
-                <div 
-                  key={item.year}
-                  className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} fade-in-up`}
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <Card className="modern-card">
-                      <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                          <Badge variant="outline" className="text-primary border-primary">
-                            {item.year}
-                          </Badge>
-                          <Badge className="bg-primary/10 text-primary">
-                            {item.milestone}
-                          </Badge>
-                        </div>
-                        <CardTitle className="heading-lg text-xl">{item.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="body-large text-muted-foreground">{item.description}</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                  
-                  {/* Timeline Dot */}
-                  <div className="hidden md:block relative">
-                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
-                  </div>
-                  
-                  <div className={`flex-1 ${index % 2 === 0 ? 'md:pl-12' : 'md:pr-12'}`}></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-16 px-6 section-accent">
-        <div className="container mx-auto max-w-4xl text-center">
+      <section className="py-20 px-6 section-accent relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-purple-600"></div>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="fade-in-up">
             <h2 className="heading-xl text-4xl mb-6 text-white">Ready to Join Our Ecosystem?</h2>
             <p className="body-large text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Whether you're a student seeking opportunities, an institution looking to collaborate, or an industry partner ready to innovate—let's build the future together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-primary bg-white text-primary hover:bg-white/90">
-                Get Started Today
-              </button>
-              <button className="btn-secondary border-white text-white hover:bg-white/10">
-                Learn More About 5i
-              </button>
+              <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3">
+                Get Started Today <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
+                Explore 5i Model
+              </Button>
             </div>
           </div>
         </div>
