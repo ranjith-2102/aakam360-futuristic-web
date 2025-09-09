@@ -210,17 +210,19 @@ const About = () => {
           
           {/* Desktop Orbital Journey */}
           <div className="hidden lg:block relative">
-            {/* Central Hub */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-primary rounded-full flex items-center justify-center z-20 shadow-2xl">
-              <Building2 className="h-8 w-8 text-white" />
-            </div>
-            
-            {/* Orbital Rings */}
-            <div className="relative w-full h-[500px] flex items-center justify-center">
+            <div className="relative w-full min-h-[600px] flex items-center justify-center">
+              {/* Central Hub */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-primary rounded-full flex items-center justify-center z-20 shadow-2xl">
+                <Building2 className="h-8 w-8 text-white" />
+              </div>
+              
+              {/* Orbital Ring Visual */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-border/20 rounded-full"></div>
+              
               {journeyPhases.map((phase, index) => {
                 const IconComponent = phase.icon;
                 const angle = (index * 72) - 90; // 360/5 = 72 degrees between each
-                const radius = 180;
+                const radius = 192; // Increased for better spacing
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
                 
@@ -234,9 +236,9 @@ const About = () => {
                       animationDelay: `${index * 0.2}s`
                     }}
                   >
-                    {/* Orbit Line */}
+                    {/* Connection Line to Center */}
                     <div 
-                      className="absolute w-px bg-border/30 origin-bottom"
+                      className="absolute w-px bg-border/30 origin-bottom z-0"
                       style={{
                         height: `${radius}px`,
                         transform: `rotate(${angle + 90}deg)`,
@@ -246,12 +248,12 @@ const About = () => {
                     />
                     
                     {/* Phase Node */}
-                    <div className={`w-16 h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`relative z-10 w-16 h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300 border-4 border-background`}>
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
                     
                     {/* Phase Info Card */}
-                    <Card className="absolute top-20 left-1/2 transform -translate-x-1/2 w-72 modern-card opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-30 pointer-events-none group-hover:pointer-events-auto">
+                    <Card className="absolute top-20 left-1/2 transform -translate-x-1/2 w-80 modern-card opacity-0 group-hover:opacity-100 transition-all duration-300 z-30 pointer-events-none group-hover:pointer-events-auto shadow-xl">
                       <CardHeader className="pb-3">
                         <div className="flex items-center gap-2 mb-2">
                           <Badge variant="outline" className="text-primary border-primary text-xs">
@@ -275,34 +277,34 @@ const About = () => {
 
           {/* Mobile & Tablet Vertical Timeline */}
           <div className="block lg:hidden">
-            <div className="relative max-w-2xl mx-auto">
+            <div className="relative max-w-3xl mx-auto">
               {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border"></div>
+              <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-border/40"></div>
               
-              <div className="space-y-8">
+              <div className="space-y-8 md:space-y-12">
                 {journeyPhases.map((phase, index) => {
                   const IconComponent = phase.icon;
                   return (
-                    <div key={phase.year} className="relative flex items-start fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                    <div key={phase.year} className="relative flex items-start gap-6 fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                       {/* Timeline Node */}
-                      <div className={`relative z-10 w-16 h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0`}>
-                        <IconComponent className="h-6 w-6 text-white" />
+                      <div className={`relative z-10 w-12 h-12 md:w-16 md:h-16 ${phase.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 border-4 border-background`}>
+                        <IconComponent className="h-5 w-5 md:h-6 md:w-6 text-white" />
                       </div>
                       
                       {/* Content */}
-                      <Card className="ml-6 modern-card flex-1 hover-scale">
-                        <CardHeader>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge variant="outline" className="text-primary border-primary">
+                      <Card className="modern-card flex-1 hover-scale">
+                        <CardHeader className="pb-3">
+                          <div className="flex items-center gap-2 mb-2 flex-wrap">
+                            <Badge variant="outline" className="text-primary border-primary text-xs">
                               {phase.year}
                             </Badge>
-                            <Badge className="bg-primary/10 text-primary">
+                            <Badge className="bg-primary/10 text-primary text-xs">
                               {phase.phase}
                             </Badge>
                           </div>
-                          <CardTitle className="heading-lg text-lg">{phase.title}</CardTitle>
+                          <CardTitle className="heading-lg text-lg md:text-xl">{phase.title}</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="pt-0">
                           <p className="body-large text-muted-foreground">{phase.description}</p>
                         </CardContent>
                       </Card>
@@ -315,7 +317,7 @@ const About = () => {
           
           {/* Journey Stats */}
           <div className="mt-16 text-center fade-in-up">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 max-w-4xl mx-auto">
               {journeyPhases.map((phase, index) => (
                 <div key={phase.year} className="fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="text-2xl md:text-3xl font-bold text-primary mb-2">{phase.year}</div>
