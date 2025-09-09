@@ -83,7 +83,7 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6 section-gradient">
+      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 section-gradient">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="fade-in-up">
@@ -125,7 +125,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 fade-in-up">
             <h2 className="heading-xl text-4xl mb-4">Our Foundation</h2>
@@ -167,7 +167,7 @@ const About = () => {
       </section>
 
       {/* Leadership Quote */}
-      <section className="py-20 px-6 section-dark relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 section-dark relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="fade-in-up">
@@ -196,7 +196,7 @@ const About = () => {
       </section>
 
       {/* Journey Section - Responsive Design */}
-      <section className="py-20 px-6 section-gradient relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 section-gradient relative overflow-hidden">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16 fade-in-up">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary">
@@ -328,7 +328,7 @@ const About = () => {
       </section>
 
       {/* Leadership Team */}
-      <section className="py-16 px-6">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12 fade-in-up">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary">
@@ -368,7 +368,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 section-accent relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 section-accent relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-purple-600"></div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <div className="fade-in-up">
