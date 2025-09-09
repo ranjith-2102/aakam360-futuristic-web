@@ -84,8 +84,8 @@ const About = () => {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 section-gradient">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center">
             <div className="fade-in-up">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary">
                 About Aakam360
@@ -93,16 +93,16 @@ const About = () => {
               <h1 className="heading-display text-5xl md:text-6xl mb-6">
                 Architects of <span className="text-primary">Innovation</span>
               </h1>
-              <p className="body-large text-xl text-muted-foreground mb-8">
+              <p className="body-large text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
                 We are architects of a self-sustaining ecosystem, bridging the critical gaps between industry, innovation, and academia through our revolutionary 5i model.
               </p>
-              <Button className="btn-primary">
+              <Button className="btn-primary mb-12">
                 Explore Our Impact <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
             
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6 fade-in-up" style={{ animationDelay: "0.2s" }}>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 fade-in-up max-w-4xl mx-auto" style={{ animationDelay: "0.2s" }}>
               {stats.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
